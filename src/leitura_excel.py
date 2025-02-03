@@ -43,3 +43,13 @@ df_meteorologicos_diario = dados_meteorologicos.groupby("Data", as_index=False).
 # Exibir as primeiras linhas
 print(df_meteorologicos_diario.head())
 print(df_meteorologicos_diario.shape[0])
+
+# Realizar o merge entre os dados de geração e os dados meteorológicos
+df_completo = df_geracao_completo.merge(df_meteorologicos_diario, on="Data", how="left")
+
+# Exibir algumas linhas para conferir
+print(df_completo.head())
+
+# Confirmar se o número de linhas está correto
+print(f"Total de linhas após o merge: {df_completo.shape[0]}")
+
