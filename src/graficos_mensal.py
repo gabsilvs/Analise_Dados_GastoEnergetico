@@ -8,7 +8,7 @@ from leitura_excel import df_completo
 fig, ax1 = plt.subplots(figsize=(20, 6))  # Aumentando a largura do gráfico
 
 # 🔹 Cores e estilos
-cores_energia = {"SFCR_1A": "blue", "SFCR_1B": "green", "SFCR_1C": "orange", "SFCR_2": "red"}
+cores_energia = {"SFCR_1": "blue", "SFCR_2": "red"}  # SFCR_1 é agora a soma dos 1A, 1B, 1C
 
 # 🔹 Plotar geração de energia (média móvel de 7 dias)
 for sfcr, cor in cores_energia.items():

@@ -11,8 +11,12 @@ mes_escolhido = 1  # Altere esse número para o mês que deseja visualizar
 df_completo["Data"] = pd.to_datetime(df_completo["Data"])  # Garantir que Data está no formato correto
 df_mes = df_completo[df_completo["Data"].dt.month == mes_escolhido]
 
-# 🔹 Definir cores para cada célula fotovoltaica
-cores = {"SFCR_1A": "blue", "SFCR_1B": "green", "SFCR_1C": "purple", "SFCR_2": "red"}
+# 🔹 Substituir SFCR_1A, SFCR_1B, SFCR_1C por SFCR_1 e somá-los
+df_mes["SFCR_ID"] = df_mes["SFCR_ID"].replace({"SFCR_1A": "SFCR_1", "SFCR_1B": "SFCR_1", "SFCR_1C": "SFCR_1"})
+df_mes = df_mes.groupby(["Data", "SFCR_ID"], as_index=False).sum()
+
+# 🔹 Definir cores para cada célula fotovoltaica (agora SFCR_1 é a soma de 1A, 1B, 1C)
+cores = {"SFCR_1": "blue", "SFCR_2": "red"}
 
 # 🔹 Criar o gráfico
 plt.figure(figsize=(12, 5))  # Menor que o anual, mas ainda confortável
