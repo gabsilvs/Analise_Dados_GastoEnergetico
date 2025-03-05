@@ -1,7 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from leitura_excel import df_completo
+from leitura_dados.leitura_excel import df_completo
+
+df_completo.columns = df_completo.columns.str.strip()
+
+df_completo["SFCR_ID"] = df_completo["SFCR_ID"].replace({"SFCR_1A": "SFCR_1", "SFCR_1B": "SFCR_1", "SFCR_1C": "SFCR_1"})
+df_completo = df_completo.groupby(["Data", "SFCR_ID"], as_index=False).sum()
 
 fig, ax1 = plt.subplots(figsize=(20, 6))
 
@@ -15,14 +20,14 @@ for sfcr, cor in cores_energia.items():
 
 ax2 = ax1.twinx()
 
-df_temp = df_completo.groupby("Data")["Temp. Ins. (C)"].mean().reset_index()
-df_temp["Temp_MM7"] = df_temp["Temp. Ins. (C)"].rolling(window=7, min_periods=1).mean()
+df_radiacao = df_completo.groupby("Data")["Radiacao"].sum().reset_index()
+df_radiacao["Radiacao_MM7"] = df_radiacao["Radiacao"].rolling(window=7, min_periods=1).mean()
 
-ax2.plot(df_temp["Data"], df_temp["Temp_MM7"], label="Temperatura Ambiente", color="black", linestyle="--", linewidth=1.5)
+ax2.plot(df_radiacao["Data"], df_radiacao["Radiacao_MM7"], label="Radiação", color="orange", linestyle="--", linewidth=1.5)
 
 ax1.set_xlabel("Data")
 ax1.set_ylabel("Geração de Energia [kWh]")
-ax2.set_ylabel("Temperatura [°C]")
+ax2.set_ylabel("Radiação Solar")
 
 ax1.set_title("Geração de Energia x Tempo (Média Móvel 7 dias)")
 
