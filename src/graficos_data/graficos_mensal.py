@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from leitura_dados.leitura_excel import df_completo
+from leitura_excel import df_completo
 
 fig, ax1 = plt.subplots(figsize=(20, 6))
 

@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from leitura_dados.leitura_excel import df_completo
+from leitura_excel import df_completo
 
 mes_escolhido = 1
 
