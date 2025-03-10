@@ -83,3 +83,14 @@ print(f"Arquivos gerados: ultrapassagem_{caminho_arquivo}.csv e ultrapassagem_{c
 #A análise de dados foi expandida para incluir o percentual de dias com o fator de potência abaixo de 0.92.
 #O código agora também imprime os resultados detalhados para cada aba do Excel com as análises feitas.
 #O arquivo de saída foi gerado em formato Excel após o processamento dos dados.
+
+#excel_datagenerate.py
+#Fator de Potência
+#A porcentagem deve ser mostrada por dia, a % diaria, e não a média mensal no final, por dia é pra ser 96 linhas(pontos), e deve ser mostrar quantos % ficou abaixo. Em cada mes deve ser ter o numero de % equivalentes ao tanto de dias no mês, calculando quantos dias do mês ultrapassou a porcentagem. Coluna E
+#Adicione esta porcentagem no excel também, dividindo cada aba 1 mês
+
+#A demanda contratada varia de acordo com o horário, gerar um excel com as colunas dia,ultrapassagem de demanda 77kw, ultrapassagem de demnanda 72kw, o horário das 18h as 21h a demanda é 77kw, e os demais horarios 00h as 18h e 21h as 00h é 72kw
+# 100% é o que a demanda é 77kw, e outro 100% é 72kw
+# Coluna B
+
+

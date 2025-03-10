@@ -35,3 +35,7 @@ for sheet, dados in todos_resultados.items():
 
 #O gráfico mostra a média diária de potência ativa, destacando os dias que ultrapassaram a demanda contratada.
 #Um limite visual é adicionado para ajudar na identificação das ultrapassagens.
+
+#grafico_media_diario.py
+
+#Gerar um grafico igual ao de grafico_fator_potencia.py, mas inves de utilizar a coluna E, utilizar a coluna B, e o limite será 77kw 

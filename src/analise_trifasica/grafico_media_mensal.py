@@ -38,3 +38,6 @@ for sheet, dados in todos_resultados.items():
 
 #O gráfico mensal compara os valores de potência ativa com a demanda contratada, destacando meses que ultrapassaram esse limite.
 #Usa-se seaborn para criar um gráfico de barras com coloração diferenciada para meses acima e abaixo do limite.
+
+#grafico_media_mensal.py
+#Juntar todos os meses em um gráfico só, 12 colunas (um para cada mês)
