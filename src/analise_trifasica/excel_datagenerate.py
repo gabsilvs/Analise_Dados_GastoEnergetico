@@ -1,4 +1,3 @@
-#Working
 import pandas as pd
 import os
 # Carregar os dados do arquivo Excel
@@ -7,19 +6,20 @@ sheets = pd.ExcelFile(caminho_arquivo).sheet_names
 
 def carregar_dados(sheet_name):
     df = pd.read_excel(caminho_arquivo, sheet_name=sheet_name)
-    df.columns = df.columns.str.strip()
-    df["momento"] = pd.to_datetime(df["momento"], format="%d/%m/%Y %H:%M")
+    df.columns = df.columns.str.strip()  # Removendo espaços extras nas colunas
+    df["momento"] = pd.to_datetime(df["momento"], format="%d/%m/%Y %H:%M")  # Convertendo para datetime
     return df
 
 dataframes = {sheet: carregar_dados(sheet) for sheet in sheets}
 
 def analisar_15_min(df):
+    # Verificando as ultrapassagens baseadas na hora e potência
     df["Ultrapassagem"] = ((df["momento"].dt.hour >= 18) & (df["momento"].dt.hour < 21) & (df["Potência Ativa Trifásica (kW)"] > 77)) | \
                            ((df["momento"].dt.hour < 18) & (df["Potência Ativa Trifásica (kW)"] > 72))
     
     ultrapassagem_percentual = df["Ultrapassagem"].mean() * 100
     
-    # Criar um dataframe apenas com os dados de 15 em 15 minutos
+    # Gerando o dataframe de ultrapassagens a cada 15 minutos
     df_ultrapassagem = df[["momento", "Potência Ativa Trifásica (kW)", "Ultrapassagem"]]
     
     return df_ultrapassagem, ultrapassagem_percentual
@@ -36,7 +36,7 @@ def analisar_mensal(df):
 
 def analisar_fp_diario(df):
     media_fp_diaria = df.groupby(df["momento"].dt.date)["Fator de Potência Trifásico"].mean()
-    dias_abaixo_092 = (media_fp_diaria < 0.92).sum()
+    dias_abaixo_092 = (media_fp_diaria < 0.92).sum()  # Contagem dos dias abaixo de 0.92 no fator de potência
     percentual_dias_abaixo = (dias_abaixo_092 / len(media_fp_diaria)) * 100
     return media_fp_diaria, percentual_dias_abaixo
 
@@ -73,11 +73,13 @@ for sheet, df in dataframes.items():
     }
     
     exibir_resultados(sheet, df_ultrapassagem, ultrapassagem, media_diaria, media_mensal, media_fp, perc_fp_baixo)
-# Criar pasta 'resultados' se não existir
-os.makedirs("resultados", exist_ok=True)
 
-# Exportar os dados de ultrapassagem para CSV e Excel
-df_ultrapassagem.to_csv(f"D:\DocumentosD\TCC_Caio\data\saidas.csv", index=False)
-df_ultrapassagem.to_excel(f"D:\DocumentosD\TCC_Caio\data\saidas.xlsx", index=False)
+df_ultrapassagem.to_excel(f"D:/DocumentosD/TCC_Caio/data/saidas/excel.xlsx", index=False)
 
 print(f"Arquivos gerados: ultrapassagem_{caminho_arquivo}.csv e ultrapassagem_{caminho_arquivo}.xlsx")
+
+#Comentários sobre o código:
+
+#A análise de dados foi expandida para incluir o percentual de dias com o fator de potência abaixo de 0.92.
+#O código agora também imprime os resultados detalhados para cada aba do Excel com as análises feitas.
+#O arquivo de saída foi gerado em formato Excel após o processamento dos dados.

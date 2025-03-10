@@ -1,5 +1,3 @@
-#Working
-
 import matplotlib.pyplot as plt
 import seaborn as sns
 from analise_dados import todos_resultados
@@ -21,3 +19,8 @@ def plotar_fp(sheet_name, media_fp):
 
 for sheet, dados in todos_resultados.items():
     plotar_fp(sheet, dados["Média_FP_Diária"])
+
+#Comentários sobre o código:
+
+#Este script gera gráficos da média diária do fator de potência e indica o limite de 0.92.
+#Utiliza matplotlib e seaborn para visualização dos dados.
