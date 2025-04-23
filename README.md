@@ -4,15 +4,6 @@ Este projeto tem como objetivo analisar dados de geração de energia e precipit
 
 ## Estrutura do Projeto
 
-📂 src/
- ├── grafico_chuva.py  # Gera gráficos de precipitação
- ├── grafico_diario_mes.py  # Gera gráficos de média diária e mensal
- ├── graficos_mensal.py  # Processa e plota médias mensais
- ├── graficos_rad.py  # Análise de radiação solar
- ├── graficos_trifasica_analise.py  # Análise de potência ativa trifásica
- ├── leitura_excel.py  # Responsável pela leitura e tratamento dos dados
- ├── p_trifasica_analise.py  # Processamento avançado de potência trifásica
-
 ## Como Instalar e Executar
 
 1. **Clonar o repositório**
@@ -51,3 +42,5 @@ Este projeto tem como objetivo analisar dados de geração de energia e precipit
 
 - Python 3.8+
 - Bibliotecas: `pandas`, `matplotlib`, `seaborn`, `openpyxl`
+
+  ## Projeto sendo atualizado regularmente - 23/04/2025
